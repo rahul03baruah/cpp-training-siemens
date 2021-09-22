@@ -79,6 +79,31 @@ void insert(int pos, int val)
     new_list->next = temp->next->next;
     temp->next = new_list;
 }
+void remove(int pos) 
+{
+    List *temp = head;
+    List *del = NULL;
+    for(int i = 0; i < pos-2; i++)
+    {
+        //cout << "checkout" << endl;
+        temp = temp->next; 
+    }
+    del = temp->next;
+    temp->next = temp->next->next;
+    delete del;
+}
+
+void displayAll() 
+{
+   List *temp = head;
+   while(temp != NULL)
+   {
+       //cout << "checkot" << endl;
+        cout << temp->item << " " << endl;
+        temp = temp->next;
+   }   
+
+}
 
 int main()
 {
@@ -89,15 +114,13 @@ int main()
    add(7);
    List *temp = head;
    insert(1,9);
-   while(temp != NULL)
-   {
-       //cout << "checkot" << endl;
-        cout << temp->item << " " << endl;
-        temp = temp->next;
-   }
+   displayAll();
    cout << "pos: " << get(4) << endl;
    cout << "pos: " << get(5) << endl;
    set(5,10);
    cout << "pos: " << get(5) << endl;
+    displayAll();
+    remove(2);
+    displayAll();
    
 }
