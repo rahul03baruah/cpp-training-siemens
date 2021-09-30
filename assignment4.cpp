@@ -16,4 +16,4 @@ class SimpleTaxCalculatorFactory:public TaxCalculatorFactory{
     }       
 };
 
-can't think of a solution!!
+// can't think of a solution!!
