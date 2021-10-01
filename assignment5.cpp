@@ -8,7 +8,6 @@ class Tank {
         virtual void move() = 0;
         virtual void attack() = 0;
         virtual void defense() = 0;
-        virtual void action() = 0;
     //move towards
     //move aaway
     //hapazard move
@@ -19,7 +18,6 @@ class AggressiveTank : public Tank {
         void move() { cout << "Move Towards Enemy" << endl; } //move towards
         void attack() { cout << "Attack Enemy" << endl; } //attack enemy
         void defense() { cout << "Cover Fire" << endl; } //cover fire
-        void action() { move(); attack(); defense(); }
 };
 
 class DefensiveTank : public Tank {
@@ -27,7 +25,6 @@ class DefensiveTank : public Tank {
         void move() { cout << "Move Away From Enemy" << endl; } //move away
         void attack() { cout << "No Attack" << endl; } //no attack
         void defense() { cout << "Hide From Enemy" << endl; }  //hide
-        void action() { move(); attack(); defense(); }
 };
 
 class GurillaTank : public Tank {
@@ -35,7 +32,6 @@ class GurillaTank : public Tank {
         void move() { cout << "Hapazard Move" << endl; } //hapazard move
         void attack() { cout << "Attack Enemy And Run" << endl; } //attack and run
         void defense() { cout << "Duck From Enemy Fire" << endl; }  //duck
-        void action() { move(); attack(); defense(); }
 };
 
 
@@ -45,6 +41,12 @@ class TankFactory {
         Tank * createTank() { return new T;}
 };
 
+void action(Tank *tank) {
+    tank->move();
+    tank->attack();
+    tank->defense();
+}
+
 
 int main()
 {
@@ -52,11 +54,9 @@ int main()
   Tank *aT = tankF.createTank<AggressiveTank>();
   Tank *aD = tankF.createTank<DefensiveTank>();
   Tank *aG = tankF.createTank<GurillaTank>();
-
-  aT->action();
+  action(aT);
   cout << "********************" << endl;
-  aD->action();
+  action(aD);
   cout << "********************" << endl;
-  aG->action();
-
+  action(aG);
 }
